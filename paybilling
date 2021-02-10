@@ -1,0 +1,63 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package billingproject;
+
+/**
+ *
+ * @author Zring Asi
+ */
+import javax.swing.JOptionPane;
+import java.io.*;
+import java.util.*;
+public class TestBillingProject {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    public static Scanner console = new Scanner (System.in);
+    public static void main(String[] args)throws FileNotFoundException{
+         // TODO code application logic here
+        
+       Scanner infile=new Scanner(new FileReader("Billing.in"));
+       PrintWriter outfile =new PrintWriter("Billing.out"); 
+        
+        String output_str;
+        int Prd_Qty;
+        double Prd_Price,Tot_bill;
+        final double Fed_Tax=0.075;
+        final double Prv_Tax=0.006;
+        
+         while (infile.hasNextInt())
+       {
+           
+            
+            
+            System.out.println ();
+            Prd_Qty=infile.nextInt();
+            System.out.println ();
+            Prd_Price=infile.nextDouble();
+          
+        
+            Tot_bill= (Prd_Price* Prd_Qty) + (Prd_Price* Prd_Qty)* Fed_Tax + (Prd_Price* Prd_Qty)* Prv_Tax;
+            output_str="Your total bill (Display by specifying)is " +Tot_bill+
+                    "\n\nYour total bill (Display by specifying two decimal place)is "
+                    +String.format("%.2f",Tot_bill)+"\n\nThank you for doing business with us." ;
+ 
+            JOptionPane.showMessageDialog(null,output_str,"The Billing System",JOptionPane.INFORMATION_MESSAGE);
+            outfile.println(output_str);
+            System.out.print(output_str);
+      
+          }    
+        
+       infile.close();
+       outfile.close();
+               
+         
+        
+   }
+    
+}
